@@ -23,7 +23,7 @@ func NewController(cfg *config.Config) (ctrl *Controller, err error) {
 	}, nil
 }
 
-// RegisterRoutes registers all the superhero_update API routes.
+// RegisterRoutes registers all the superhero update API routes.
 func (ctl *Controller) RegisterRoutes() *gin.Engine {
 	router := gin.Default()
 

@@ -10,9 +10,9 @@ import (
 	"github.com/superhero-update/internal/producer/model"
 )
 
-// StoreSuperhero publishes new Superhero on Kafka topic for it to be
+// UpdateSuperhero publishes update for a Superhero on Kafka topic for it to be
 // consumed by consumer and updated in DB and Elasticsearch.
-func(p *Producer) StoreSuperhero(s model.Superhero) error {
+func(p *Producer) UpdateSuperhero(s model.Superhero) error {
 	var sb bytes.Buffer
 
 	key := s.ID
