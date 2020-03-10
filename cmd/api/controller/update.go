@@ -18,8 +18,8 @@ import (
 	"net/http"
 	"time"
 
-	ctrl "github.com/superhero-update/cmd/api/model"
-	"github.com/superhero-update/internal/producer/model"
+	ctrl "github.com/superhero-match/superhero-update/cmd/api/model"
+	"github.com/superhero-match/superhero-update/internal/producer/model"
 
 	"github.com/gin-gonic/gin"
 )

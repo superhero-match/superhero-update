@@ -3,16 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="134576f9-41c3-46ff-be44-4e91c88a8f3c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/api/controller/controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/controller/controller.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/api/controller/update.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/controller/update.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/api/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/api/model/superhero.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/model/superhero.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/config/app.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/config/app.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/config/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/config/producer.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/config/producer.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/producer/close.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/producer/close.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/producer/model/superhero.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/producer/model/superhero.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/producer/producer.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/producer/producer.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/producer/update.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/producer/update.go" afterDir="false" />
     </list>
@@ -84,5 +78,11 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1583085635544">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1583085635544" />
   </component>
 </project>

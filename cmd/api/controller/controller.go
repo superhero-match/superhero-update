@@ -16,8 +16,8 @@ package controller
 import (
 	"github.com/gin-gonic/gin"
 
-	"github.com/superhero-update/internal/config"
-	"github.com/superhero-update/internal/producer"
+	"github.com/superhero-match/superhero-update/internal/config"
+	"github.com/superhero-match/superhero-update/internal/producer"
 )
 
 const (
