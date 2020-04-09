@@ -41,7 +41,7 @@ func (ctl *Controller) UpdateSuperhero(c *gin.Context) {
 	t := time.Now().UTC()
 
 	// Publish superhero on Kafka topic to be stored in DB and Elasticsearch.
-	err = ctl.Producer.UpdateSuperhero(
+	err = ctl.Service.Producer.UpdateSuperhero(
 		model.Superhero{
 			ID:                    s.ID,
 			LookingForGender:      s.LookingForGender,

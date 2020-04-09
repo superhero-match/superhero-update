@@ -14,9 +14,8 @@
 package main
 
 import (
-	"github.com/superhero-match/superhero-update/cmd/api/controller"
+	"github.com/superhero-match/superhero-update/cmd/health/controller"
 	"github.com/superhero-match/superhero-update/internal/config"
-	"github.com/superhero-match/superhero-update/internal/health"
 )
 
 func main() {
@@ -25,34 +24,15 @@ func main() {
 		panic(err)
 	}
 
-	client := health.NewClient(cfg)
-
-	ctrl, err := controller.NewController(cfg)
+	ctrl, err := controller.NewController()
 	if err != nil {
-		_ = client.ShutdownHealthServer()
-
 		panic(err)
 	}
 
 	r := ctrl.RegisterRoutes()
 
-	err = r.RunTLS(
-		cfg.App.Port,
-		cfg.App.CertFile,
-		cfg.App.KeyFile,
-	)
+	err = r.Run(cfg.Health.Port)
 	if err != nil {
-		_ = client.ShutdownHealthServer()
-
 		panic(err)
 	}
-
-	defer func() {
-		err = ctrl.Service.Producer.Close()
-		if err != nil {
-			panic(err)
-		}
-	}()
-
-	_ = client.ShutdownHealthServer()
 }

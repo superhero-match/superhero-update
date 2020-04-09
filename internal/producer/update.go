@@ -28,8 +28,6 @@ import (
 func(p *Producer) UpdateSuperhero(s model.Superhero) error {
 	var sb bytes.Buffer
 
-	key := s.ID
-
 	err := json.NewEncoder(&sb).Encode(s)
 	if err != nil {
 		return err
@@ -37,7 +35,6 @@ func(p *Producer) UpdateSuperhero(s model.Superhero) error {
 
 	err = p.Producer.WriteMessages(context.Background(),
 		kafka.Message{
-			Key:   []byte(key),
 			Value: sb.Bytes(),
 		},
 	)

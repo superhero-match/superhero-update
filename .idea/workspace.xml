@@ -4,10 +4,14 @@
     <list default="true" id="134576f9-41c3-46ff-be44-4e91c88a8f3c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/api/controller/controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/controller/controller.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/api/controller/update.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/controller/update.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/api/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/producer/producer.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/producer/producer.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/config/producer.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/config/producer.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/producer/update.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/producer/update.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,7 +31,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1ST724XpKFsS6AaWHItd2Ei1oXN" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -35,8 +41,10 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
+    <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -47,7 +55,25 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Go Build.go build github.com/superhero-match/superhero-update/cmd/health">
+    <configuration name="go build github.com/superhero-match/superhero-update/cmd/api" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="superhero-update" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/cmd/api/main.go" />
+      <package value="github.com/superhero-match/superhero-update/cmd/api" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build github.com/superhero-match/superhero-update/cmd/health" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="superhero-update" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/cmd/health/main.go" />
+      <package value="github.com/superhero-match/superhero-update/cmd/health" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
     <configuration name="go build github.com/superhero-update/cmd/api" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="superhero-update" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -59,6 +85,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build github.com/superhero-match/superhero-update/cmd/health" />
+        <item itemvalue="Go Build.go build github.com/superhero-match/superhero-update/cmd/api" />
         <item itemvalue="Go Build.go build github.com/superhero-update/cmd/api" />
       </list>
     </recent_temporary>
@@ -80,9 +108,29 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
+    <state x="275" y="23" key="#Go_Modules_(vgo)" timestamp="1583858787129">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="23" key="#Go_Modules_(vgo)/0.0.1366.728@0.0.1366.728" timestamp="1583858787129" />
     <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1583085635544">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1583085635544" />
+    <state width="1323" height="372" key="GridCell.Tab.0.bottom" timestamp="1586437450669">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="372" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1586437450669" />
+    <state width="1323" height="372" key="GridCell.Tab.0.center" timestamp="1586437450669">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="372" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1586437450669" />
+    <state width="1323" height="372" key="GridCell.Tab.0.left" timestamp="1586437450668">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="372" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1586437450668" />
+    <state width="1323" height="372" key="GridCell.Tab.0.right" timestamp="1586437450669">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="372" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1586437450669" />
   </component>
 </project>

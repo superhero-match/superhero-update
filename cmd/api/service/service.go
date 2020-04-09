@@ -11,48 +11,34 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-package main
+package service
 
 import (
-	"github.com/superhero-match/superhero-update/cmd/api/controller"
+	"github.com/superhero-match/superhero-update/internal/producer"
+	"go.uber.org/zap"
+
 	"github.com/superhero-match/superhero-update/internal/config"
-	"github.com/superhero-match/superhero-update/internal/health"
 )
 
-func main() {
-	cfg, err := config.NewConfig()
+// Service holds all the different services that are used when handling request.
+type Service struct {
+	Producer   *producer.Producer
+	Logger     *zap.Logger
+	TimeFormat string
+}
+
+// NewService creates value of type Service.
+func NewService(cfg *config.Config) (*Service, error) {
+	logger, err := zap.NewProduction()
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 
-	client := health.NewClient(cfg)
+	defer logger.Sync()
 
-	ctrl, err := controller.NewController(cfg)
-	if err != nil {
-		_ = client.ShutdownHealthServer()
-
-		panic(err)
-	}
-
-	r := ctrl.RegisterRoutes()
-
-	err = r.RunTLS(
-		cfg.App.Port,
-		cfg.App.CertFile,
-		cfg.App.KeyFile,
-	)
-	if err != nil {
-		_ = client.ShutdownHealthServer()
-
-		panic(err)
-	}
-
-	defer func() {
-		err = ctrl.Service.Producer.Close()
-		if err != nil {
-			panic(err)
-		}
-	}()
-
-	_ = client.ShutdownHealthServer()
+	return &Service{
+		Producer:   producer.NewProducer(cfg),
+		Logger:     logger,
+		TimeFormat: cfg.App.TimeFormat,
+	}, nil
 }

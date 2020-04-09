@@ -16,8 +16,8 @@ package controller
 import (
 	"github.com/gin-gonic/gin"
 
+	"github.com/superhero-match/superhero-update/cmd/api/service"
 	"github.com/superhero-match/superhero-update/internal/config"
-	"github.com/superhero-match/superhero-update/internal/producer"
 )
 
 const (
@@ -26,13 +26,18 @@ const (
 
 // Controller holds the controller data.
 type Controller struct {
-	Producer *producer.Producer
+	Service *service.Service
 }
 
 // NewController returns new controller.
 func NewController(cfg *config.Config) (ctrl *Controller, err error) {
+	s, err := service.NewService(cfg)
+	if err != nil {
+		return nil, err
+	}
+
 	return &Controller{
-		Producer: producer.NewProducer(cfg),
+		Service: s,
 	}, nil
 }
 
