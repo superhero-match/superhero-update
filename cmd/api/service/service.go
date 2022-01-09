@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2019 - 2021 MWSOFT
+  Copyright (C) 2019 - 2022 MWSOFT
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
@@ -14,31 +14,25 @@
 package service
 
 import (
-	"github.com/superhero-match/superhero-update/internal/producer"
-	"go.uber.org/zap"
-
 	"github.com/superhero-match/superhero-update/internal/config"
+	"github.com/superhero-match/superhero-update/internal/producer"
+	"github.com/superhero-match/superhero-update/internal/producer/model"
 )
 
-// Service holds all the different services that are used when handling request.
-type Service struct {
-	Producer   *producer.Producer
-	Logger     *zap.Logger
-	TimeFormat string
+// Service interface defines service methods.
+type Service interface {
+	Close() error
+	UpdateSuperhero(s model.Superhero) error
+}
+
+// service holds all the different services that are used when handling request.
+type service struct {
+	Producer producer.Producer
 }
 
 // NewService creates value of type Service.
-func NewService(cfg *config.Config) (*Service, error) {
-	logger, err := zap.NewProduction()
-	if err != nil {
-		return nil, err
-	}
-
-	defer logger.Sync()
-
-	return &Service{
-		Producer:   producer.NewProducer(cfg),
-		Logger:     logger,
-		TimeFormat: cfg.App.TimeFormat,
+func NewService(cfg *config.Config) (Service, error) {
+	return &service{
+		Producer: producer.NewProducer(cfg),
 	}, nil
 }

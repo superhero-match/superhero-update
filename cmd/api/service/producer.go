@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2019 - 2021 MWSOFT
+  Copyright (C) 2019 - 2022 MWSOFT
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
@@ -11,19 +11,19 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-package health
+package service
 
 import (
-	"net/http"
+	"github.com/superhero-match/superhero-update/internal/producer/model"
 )
 
-// ShutdownHealthServer sends shutdown signal to health server. This shutdown signal is sent only when API server
-// is panicking and is about to be shutdown to notify loadbalancer that API is un-healthy.
-func (c *Client) ShutdownHealthServer () error {
-	_, err := http.Post(c.HealthServerURL, c.ContentType, nil)
-	if err != nil {
-		return err
-	}
+// Close closes the connection to Kafka.
+func (srv *service) Close() error {
+	return srv.Producer.Close()
+}
 
-	return nil
+// UpdateSuperhero publishes update for a Superhero on Kafka topic for it to be
+// consumed by consumer and updated in DB and Elasticsearch.
+func (srv *service) UpdateSuperhero(s model.Superhero) error {
+	return srv.Producer.UpdateSuperhero(s)
 }

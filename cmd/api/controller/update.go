@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2019 - 2021 MWSOFT
+  Copyright (C) 2019 - 2022 MWSOFT
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
@@ -14,14 +14,14 @@
 package controller
 
 import (
-	"fmt"
 	"net/http"
 	"time"
 
+	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
+
 	ctrl "github.com/superhero-match/superhero-update/cmd/api/model"
 	"github.com/superhero-match/superhero-update/internal/producer/model"
-
-	"github.com/gin-gonic/gin"
 )
 
 // UpdateSuperhero updates Superhero.
@@ -29,11 +29,12 @@ func (ctl *Controller) UpdateSuperhero(c *gin.Context) {
 	var s ctrl.Superhero
 
 	err := c.BindJSON(&s)
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"status":  http.StatusInternalServerError,
-			"updated": false,
-		})
+	if checkError(err, c) {
+		ctl.Logger.Error(
+			"failed to bind request model",
+			zap.String("err", err.Error()),
+			zap.String("time", time.Now().UTC().Format(ctl.TimeFormat)),
+		)
 
 		return
 	}
@@ -41,7 +42,7 @@ func (ctl *Controller) UpdateSuperhero(c *gin.Context) {
 	t := time.Now().UTC()
 
 	// Publish superhero on Kafka topic to be stored in DB and Elasticsearch.
-	err = ctl.Service.Producer.UpdateSuperhero(
+	err = ctl.Service.UpdateSuperhero(
 		model.Superhero{
 			ID:                    s.ID,
 			LookingForGender:      s.LookingForGender,
@@ -56,16 +57,15 @@ func (ctl *Controller) UpdateSuperhero(c *gin.Context) {
 			City:                  s.City,
 			SuperPower:            s.SuperPower,
 			AccountType:           s.AccountType,
-			UpdatedAt:             t.Format(timeFormat),
+			UpdatedAt:             t.Format(ctl.TimeFormat),
 		},
 	)
-	if err != nil {
-		fmt.Println("UpdateSuperhero")
-		fmt.Println(err)
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"status":     http.StatusInternalServerError,
-			"updated": false,
-		})
+	if checkError(err, c) {
+		ctl.Logger.Error(
+			"failed to update superhero",
+			zap.String("err", err.Error()),
+			zap.String("time", time.Now().UTC().Format(ctl.TimeFormat)),
+		)
 
 		return
 	}
@@ -74,4 +74,17 @@ func (ctl *Controller) UpdateSuperhero(c *gin.Context) {
 		"status":  http.StatusOK,
 		"updated": true,
 	})
+}
+
+func checkError(err error, c *gin.Context) bool {
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"status":  http.StatusInternalServerError,
+			"updated": false,
+		})
+
+		return true
+	}
+
+	return false
 }
