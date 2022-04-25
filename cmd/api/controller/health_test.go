@@ -16,11 +16,45 @@ package controller
 
 import (
 	"net/http"
+	"net/http/httptest"
+	"testing"
 
 	"github.com/gin-gonic/gin"
+	"github.com/stretchr/testify/assert"
+	"go.uber.org/zap"
 )
 
-// Health is used for health checks from loadbalancer.
-func (ctl *Controller) Health(c *gin.Context) {
-	c.Status(http.StatusOK)
+func TestController_Health(t *testing.T) {
+	mockProd := mockProducer{
+		updateSuperhero: mockPublishUpdateSuperhero,
+	}
+
+	mService := &mockService{
+		mProducer: mockProd,
+	}
+
+	logger, err := zap.NewProduction()
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	defer logger.Sync()
+
+	mockController := &Controller{
+		Service:    mService,
+		Logger:     logger,
+		TimeFormat: "2006-01-02T15:04:05",
+	}
+
+	w := httptest.NewRecorder()
+	ctx, _ := gin.CreateTestContext(w)
+
+	ctx.Request = &http.Request{
+		Header: make(http.Header),
+	}
+
+	MockGet(ctx)
+
+	mockController.Health(ctx)
+	assert.EqualValues(t, http.StatusOK, w.Code)
 }

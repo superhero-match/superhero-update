@@ -11,6 +11,7 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
 package producer
 
 import (
@@ -26,14 +27,24 @@ import (
 // UpdateSuperhero publishes update for a Superhero on Kafka topic for it to be
 // consumed by consumer and updated in DB and Elasticsearch.
 func (p *producer) UpdateSuperhero(s model.Superhero) error {
-	var sb bytes.Buffer
+	return p.updateSuperhero(p.Producer, s)
+}
 
-	err := json.NewEncoder(&sb).Encode(s)
+// publishUpdateSuperhero publishes update for a Superhero on Kafka topic.
+func publishUpdateSuperhero(producer *kafka.Writer, s model.Superhero) error {
+	err := s.Validate()
 	if err != nil {
 		return err
 	}
 
-	err = p.Producer.WriteMessages(context.Background(),
+	var sb bytes.Buffer
+
+	err = json.NewEncoder(&sb).Encode(s)
+	if err != nil {
+		return err
+	}
+
+	err = producer.WriteMessages(context.Background(),
 		kafka.Message{
 			Value: sb.Bytes(),
 		},
